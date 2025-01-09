@@ -5,21 +5,35 @@ namespace Regex_practice
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            string pattern = @"\d";
-            Regex regex = new Regex(pattern);
-
-            string text = "Hi there, my phone number is 123-456-7890";
-
-            MatchCollection matchCollection = regex.Matches(text);
-
-            Console.WriteLine($"{matchCollection.Count} hits found:\nIn {text}");
-
-            foreach (Match hit in matchCollection)
+            static void ExtractPatterns(string input)
             {
-                GroupCollection group = hit.Groups;
-                Console.WriteLine($"Found a {hit.Value} at index {group[0].Index}");
+                
+                Regex regex = new Regex(@"(support|sales)@example\.(com|org)");
+                MatchCollection matchCollection = regex.Matches(input);
+
+                foreach (Match match in matchCollection)
+                {
+                    Console.WriteLine(match.Value);
+                }
             }
+            ExtractPatterns("Contact us at support@example.com or sales@example.org.");
+
+        //    Console.WriteLine("Hello, World!");
+        //    string pattern = @"\d";
+        //    Regex regex = new Regex(pattern);
+
+        //    string text = "Hi there, my phone number is 123-456-7890";
+
+        //    MatchCollection matchCollection = regex.Matches(text);
+
+        //    Console.WriteLine($"{matchCollection.Count} hits found:\nIn {text}");
+
+        //    foreach (Match hit in matchCollection)
+        //    {
+        //        GroupCollection group = hit.Groups;
+        //        Console.WriteLine($"Found a {hit.Value} at index {group[0].Index}");
+        //    }
+        //
         }
     }
 }
